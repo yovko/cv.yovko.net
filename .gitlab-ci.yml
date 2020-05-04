@@ -2,6 +2,6 @@ deploy:
   image: garland/aws-cli-docker
   script:
   # Synchronise the content of the root folder to the AWS S3 bucket name from the variable
-  - aws s3 sync ./ s3://$AWS_S3_BUCKET --recursive --exclude ".git" --exclude ".git/*" --exclude ".gitlab-ci.yml" --delete --only-show-errors
+  - aws s3 sync . s3://$AWS_S3_BUCKET --exclude ".git" --exclude ".git/*" --exclude ".gitlab-ci.yml" --delete --only-show-errors
   # Invalidate the cloudfront cache to make the changes live
   - aws cloudfront create-invalidation --distribution-id $AWS_CFD_ID --paths "/*"
