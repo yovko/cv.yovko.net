@@ -1,7 +1,7 @@
 deploy:
   image: garland/aws-cli-docker
   script:
-  # Synchronise the "public" folder passed from buildProduction to the Production AWS S3 bucket name from the variable
+  # Synchronise the content of the root folder to the AWS S3 bucket name from the variable
   - aws s3 sync ./ s3://$AWS_S3_BUCKET --exclude "^\." --exclude "\/\." --delete --only-show-errors
   # Invalidate the cloudfront cache to make the changes live
   - aws cloudfront create-invalidation --distribution-id $AWS_CFD_ID --paths "/*"
