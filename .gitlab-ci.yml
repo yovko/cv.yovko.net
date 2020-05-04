@@ -1,4 +1,3 @@
-# Use a docker image with AWS CLI pre-installed
 image: garland/aws-cli-docker
   script:
   # Synchronise the "public" folder passed from buildProduction to the Production AWS S3 bucket name from the variable
